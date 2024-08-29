@@ -7,6 +7,7 @@ part 'user_model.g.dart';
 class UserModel with _$UserModel {
   const factory UserModel({
     required String userId,
+    required String name,
     required bool isVerified,
     required double balance,
   }) = _UserModel;

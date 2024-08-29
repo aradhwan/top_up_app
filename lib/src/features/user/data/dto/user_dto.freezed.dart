@@ -21,6 +21,7 @@ UserDto _$UserDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserDto {
   String get userId => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   bool get isVerified => throw _privateConstructorUsedError;
   double get balance => throw _privateConstructorUsedError;
 
@@ -34,7 +35,7 @@ abstract class $UserDtoCopyWith<$Res> {
   factory $UserDtoCopyWith(UserDto value, $Res Function(UserDto) then) =
       _$UserDtoCopyWithImpl<$Res, UserDto>;
   @useResult
-  $Res call({String userId, bool isVerified, double balance});
+  $Res call({String userId, String name, bool isVerified, double balance});
 }
 
 /// @nodoc
@@ -51,6 +52,7 @@ class _$UserDtoCopyWithImpl<$Res, $Val extends UserDto>
   @override
   $Res call({
     Object? userId = null,
+    Object? name = null,
     Object? isVerified = null,
     Object? balance = null,
   }) {
@@ -58,6 +60,10 @@ class _$UserDtoCopyWithImpl<$Res, $Val extends UserDto>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       isVerified: null == isVerified
           ? _value.isVerified
@@ -78,7 +84,7 @@ abstract class _$$UserDtoImplCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
       __$$UserDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String userId, bool isVerified, double balance});
+  $Res call({String userId, String name, bool isVerified, double balance});
 }
 
 /// @nodoc
@@ -93,6 +99,7 @@ class __$$UserDtoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = null,
+    Object? name = null,
     Object? isVerified = null,
     Object? balance = null,
   }) {
@@ -100,6 +107,10 @@ class __$$UserDtoImplCopyWithImpl<$Res>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       isVerified: null == isVerified
           ? _value.isVerified
@@ -117,13 +128,18 @@ class __$$UserDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserDtoImpl implements _UserDto {
   const _$UserDtoImpl(
-      {required this.userId, this.isVerified = false, required this.balance});
+      {required this.userId,
+      required this.name,
+      this.isVerified = false,
+      required this.balance});
 
   factory _$UserDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserDtoImplFromJson(json);
 
   @override
   final String userId;
+  @override
+  final String name;
   @override
   @JsonKey()
   final bool isVerified;
@@ -132,7 +148,7 @@ class _$UserDtoImpl implements _UserDto {
 
   @override
   String toString() {
-    return 'UserDto(userId: $userId, isVerified: $isVerified, balance: $balance)';
+    return 'UserDto(userId: $userId, name: $name, isVerified: $isVerified, balance: $balance)';
   }
 
   @override
@@ -141,6 +157,7 @@ class _$UserDtoImpl implements _UserDto {
         (other.runtimeType == runtimeType &&
             other is _$UserDtoImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.isVerified, isVerified) ||
                 other.isVerified == isVerified) &&
             (identical(other.balance, balance) || other.balance == balance));
@@ -148,7 +165,8 @@ class _$UserDtoImpl implements _UserDto {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, isVerified, balance);
+  int get hashCode =>
+      Object.hash(runtimeType, userId, name, isVerified, balance);
 
   @JsonKey(ignore: true)
   @override
@@ -167,6 +185,7 @@ class _$UserDtoImpl implements _UserDto {
 abstract class _UserDto implements UserDto {
   const factory _UserDto(
       {required final String userId,
+      required final String name,
       final bool isVerified,
       required final double balance}) = _$UserDtoImpl;
 
@@ -174,6 +193,8 @@ abstract class _UserDto implements UserDto {
 
   @override
   String get userId;
+  @override
+  String get name;
   @override
   bool get isVerified;
   @override

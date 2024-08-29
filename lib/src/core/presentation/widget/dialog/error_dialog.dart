@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:top_up_app/src/src.dart';
 
 class ErrorDialog extends StatelessWidget {
   final String _message;
@@ -7,7 +8,7 @@ class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Error'),
+      title: Text(context.loc.error),
       icon: const Icon(
         Icons.error_outline,
         color: Colors.red,
@@ -15,7 +16,7 @@ class ErrorDialog extends StatelessWidget {
       content: Text(_message),
       actions: [
         TextButton(
-          child: const Text('OK'),
+          child: Text(context.loc.ok),
           onPressed: () {
             Navigator.of(context).pop();
           },

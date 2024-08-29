@@ -12,10 +12,12 @@ class BeneficiaryService implements IBeneficiaryService {
   }
 
   @override
-  Future<Either<Error, BeneficiaryModel>> addBeneficiary(
-      {required String nickname, required String phoneNumber}) {
+  Future<Either<Error, BeneficiaryModel>> addBeneficiary({
+    required String nickname,
+    required String phoneNumber,
+  }) {
     return beneficiaryRepository.addBeneficiary(
-      BeneficiaryModel(
+      beneficiary: BeneficiaryModel(
         nickname: nickname,
         phoneNumber: '+971$phoneNumber',
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:top_up_app/src/src.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String placeholder;
@@ -88,10 +89,10 @@ class CustomTextFormField extends StatelessWidget {
         labelText: isRequired ? "$placeholder*" : placeholder,
         helperText: helperText != null && helperText!.isNotEmpty
             ? isRequired
-                ? "* Required Field, $helperText"
+                ? "* ${context.loc.requiredField}, $helperText"
                 : helperText
             : isRequired
-                ? "* Required Field"
+                ? "* ${context.loc.requiredField}"
                 : null,
         labelStyle: placeholderColor != null
             ? TextStyle(color: placeholderColor)
@@ -103,7 +104,7 @@ class CustomTextFormField extends StatelessWidget {
       ),
       validator: (value) {
         if (isRequired && (value?.trim().isEmpty ?? true)) {
-          return "$placeholder is required";
+          return context.loc.fieldIsRequired(placeholder);
         }
         return validator != null ? validator!(value) : null;
       },

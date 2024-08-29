@@ -6,7 +6,7 @@ part of 'beneficiaries_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$beneficiariesHash() => r'32f07014b7bbc1779151448b98d75d51a26ea770';
+String _$beneficiariesHash() => r'208bc91123a5ba0ea655bf3c9f011245cd5251a3';
 
 /// See also [beneficiaries].
 @ProviderFor(beneficiaries)

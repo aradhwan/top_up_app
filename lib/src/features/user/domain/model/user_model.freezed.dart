@@ -21,6 +21,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserModel {
   String get userId => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   bool get isVerified => throw _privateConstructorUsedError;
   double get balance => throw _privateConstructorUsedError;
 
@@ -35,7 +36,7 @@ abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
-  $Res call({String userId, bool isVerified, double balance});
+  $Res call({String userId, String name, bool isVerified, double balance});
 }
 
 /// @nodoc
@@ -52,6 +53,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   $Res call({
     Object? userId = null,
+    Object? name = null,
     Object? isVerified = null,
     Object? balance = null,
   }) {
@@ -59,6 +61,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       isVerified: null == isVerified
           ? _value.isVerified
@@ -80,7 +86,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       __$$UserModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String userId, bool isVerified, double balance});
+  $Res call({String userId, String name, bool isVerified, double balance});
 }
 
 /// @nodoc
@@ -95,6 +101,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = null,
+    Object? name = null,
     Object? isVerified = null,
     Object? balance = null,
   }) {
@@ -102,6 +109,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       isVerified: null == isVerified
           ? _value.isVerified
@@ -119,7 +130,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserModelImpl implements _UserModel {
   const _$UserModelImpl(
-      {required this.userId, required this.isVerified, required this.balance});
+      {required this.userId,
+      required this.name,
+      required this.isVerified,
+      required this.balance});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -127,13 +141,15 @@ class _$UserModelImpl implements _UserModel {
   @override
   final String userId;
   @override
+  final String name;
+  @override
   final bool isVerified;
   @override
   final double balance;
 
   @override
   String toString() {
-    return 'UserModel(userId: $userId, isVerified: $isVerified, balance: $balance)';
+    return 'UserModel(userId: $userId, name: $name, isVerified: $isVerified, balance: $balance)';
   }
 
   @override
@@ -142,6 +158,7 @@ class _$UserModelImpl implements _UserModel {
         (other.runtimeType == runtimeType &&
             other is _$UserModelImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.isVerified, isVerified) ||
                 other.isVerified == isVerified) &&
             (identical(other.balance, balance) || other.balance == balance));
@@ -149,7 +166,8 @@ class _$UserModelImpl implements _UserModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, isVerified, balance);
+  int get hashCode =>
+      Object.hash(runtimeType, userId, name, isVerified, balance);
 
   @JsonKey(ignore: true)
   @override
@@ -168,6 +186,7 @@ class _$UserModelImpl implements _UserModel {
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
       {required final String userId,
+      required final String name,
       required final bool isVerified,
       required final double balance}) = _$UserModelImpl;
 
@@ -176,6 +195,8 @@ abstract class _UserModel implements UserModel {
 
   @override
   String get userId;
+  @override
+  String get name;
   @override
   bool get isVerified;
   @override

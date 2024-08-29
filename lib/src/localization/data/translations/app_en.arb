@@ -1,0 +1,109 @@
+{
+  "error": "Error",
+  "ok": "Ok",
+  "requiredField": "Required Field",
+  "fieldIsRequired": "{fieldName} is required",
+  "@fieldIsRequired": {
+    "placeholders": {
+      "fieldName": {
+        "type": "String"
+      }
+    }
+  },
+  "home": "Home",
+  "addBeneficiary": "Add Beneficiary",
+  "nickname": "Nickname",
+  "uaeCountryCode": "+971",
+  "phoneNumber": "Phone Number",
+  "phoneNumberHelperText": "eg. 501234567",
+  "phoneNumberShouldStartWithFive": "Phone number should start with 5",
+  "phoneNumberShouldHaveNineDigits": "Phone number should have 9 digits",
+  "beneficiaryAddedSuccessfully": "{nickname} has been added successfully!",
+  "@beneficiaryAddedSuccessfully": {
+    "placeholders": {
+      "nickname": {
+        "type": "String"
+      }
+    }
+  },
+  "add": "Add",
+  "topUp": "Top Up",
+  "beneficiary": "Beneficiary",
+  "amount": "Amount",
+  "errorMessage": "Error: {message}",
+  "@errorMessage": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "noOptionsAvailable": "No options available",
+  "additionalProcessingFeeNote": "Note: An additional processing fee of AED 1 will be charged on each top-up transaction.",
+  "topUpSuccessMessage": "Top up ${phoneNumber} with amount ${amount} has been processed successfully!",
+  "@topUpSuccessMessage": {
+    "placeholders": {
+      "phoneNumber": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "double"
+      }
+    }
+  },
+  "beneficiaries": "Beneficiaries",
+  "addNew": "Add New",
+  "noBeneficiariesFound": "No beneficiaries found",
+  "errorRetrievingUserInformation": "Error retrieving user information",
+  "reload": "Reload",
+  "welcome": "Welcome,",
+  "availableBalance": "Available Balance",
+  "balanceValue": "AED {value}",
+  "@balanceValue": {
+    "placeholders": {
+      "value": {
+        "type": "double"
+      }
+    }
+  },
+  "english": "English",
+  "close": "Close",
+  "send": "Send",
+  "errorTitle": "Error",
+  "infoTitle": "Info",
+  "yes": "Yes",
+  "no": "No",
+  "documentCount": "Document #{documentNumber}",
+  "@documentCount": {
+    "placeholders": {
+      "documentNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "amount": "Amount",
+  "amountInAed": "{amount} AED",
+  "@amountInAed": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "minimumNumberOfDigits": "Minimum length is {number} digits",
+  "@minimumNumberOfDigits": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "page": "{page} Page",
+  "@page": {
+    "page": {
+      "number": {
+        "type": "string"
+      }
+    }
+  }
+}

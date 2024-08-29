@@ -9,6 +9,7 @@ part of 'user_model.dart';
 _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
     _$UserModelImpl(
       userId: json['userId'] as String,
+      name: json['name'] as String,
       isVerified: json['isVerified'] as bool,
       balance: (json['balance'] as num).toDouble(),
     );
@@ -16,6 +17,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
     <String, dynamic>{
       'userId': instance.userId,
+      'name': instance.name,
       'isVerified': instance.isVerified,
       'balance': instance.balance,
     };

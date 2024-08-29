@@ -15,7 +15,7 @@ class AddBeneficiaryPage extends ConsumerWidget {
     final phoneController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Beneficiary'),
+        title: Text(context.loc.addBeneficiary),
       ),
       body: SafeArea(
         child: Padding(
@@ -30,7 +30,7 @@ class AddBeneficiaryPage extends ConsumerWidget {
                     child: Column(
                       children: [
                         CustomTextFormField(
-                          placeholder: 'Nickname',
+                          placeholder: context.loc.nickname,
                           textInputAction: TextInputAction.next,
                           isRequired: true,
                           maxLength: 20,
@@ -39,17 +39,17 @@ class AddBeneficiaryPage extends ConsumerWidget {
                         ),
                         const SizedBox(height: 24),
                         CustomTextFormField(
-                          prefixIcon: const SizedBox(
+                          prefixIcon: SizedBox(
                             width: 60,
                             child: Center(
-                              child: Text('+971'),
+                              child: Text(context.loc.uaeCountryCode),
                             ),
                           ),
                           maxLength: 9,
                           textInputType: TextInputType.phone,
                           textInputAction: TextInputAction.done,
-                          placeholder: 'Phone Number',
-                          helperText: "eg. 501234567",
+                          placeholder: context.loc.phoneNumber,
+                          helperText: context.loc.phoneNumberHelperText,
                           isRequired: true,
                           inputFormatters: [
                             FilteringTextInputFormatter.allow(
@@ -58,10 +58,11 @@ class AddBeneficiaryPage extends ConsumerWidget {
                           ],
                           validator: (value) {
                             if (!value!.startsWith('5')) {
-                              return 'Phone number should start with 5';
+                              return context.loc.phoneNumberShouldStartWithFive;
                             }
                             if (value.length < 9) {
-                              return 'Phone number should have 9 digits';
+                              return context
+                                  .loc.phoneNumberShouldHaveNineDigits;
                             }
                             return null;
                           },
@@ -91,13 +92,13 @@ class AddBeneficiaryPage extends ConsumerWidget {
                     ),
                     (r) {
                       showSuccessToast(
-                          "${r.nickname} has been added successfully!");
+                          context.loc.beneficiaryAddedSuccessfully(r.nickname));
                       ref.invalidate(beneficiariesProvider);
                       context.pop();
                     },
                   );
                 },
-                child: const Text('Add'),
+                child: Text(context.loc.add),
               ),
             ],
           ),

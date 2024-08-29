@@ -7,6 +7,7 @@ part 'user_dto.g.dart';
 class UserDto with _$UserDto {
   const factory UserDto({
     required String userId,
+    required String name,
     @Default(false) bool isVerified,
     required double balance,
   }) = _UserDto;

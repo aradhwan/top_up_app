@@ -1,34 +1,20 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:top_up_app/src/src.dart';
 
-class BeneficiaryMockRepository implements IBeneficiaryRepository {
-  final Dio _client;
-  late DioAdapter _dioAdapter;
+class BeneficiaryMockRepository extends BaseNetworkRepository
+    implements IBeneficiaryRepository {
+  final IBeneficiaryMockDataset? _dataset;
 
-  final _beneficiaryDtoList = [
-    const BeneficiaryDto(
-        nickname: 'Ahmed Radwan', phoneNumber: '+971581234567'),
-    const BeneficiaryDto(nickname: 'Khalid', phoneNumber: '+971507654321'),
-    const BeneficiaryDto(nickname: 'Hasan', phoneNumber: '+971501234567'),
-  ];
-
-  BeneficiaryMockRepository({required Dio client}) : _client = client {
-    _dioAdapter = DioAdapter(
-      dio: _client,
-      printLogs: true,
-    );
-  }
+  BeneficiaryMockRepository({
+    IBeneficiaryMockDataset? dataset,
+  }) : _dataset = dataset;
 
   @override
   Future<Either<Error, List<BeneficiaryModel>>> getBeneficiaries() async {
-    _setupGetResponses();
-
     try {
-      final response = await _client.get(BeneficiaryConstant.beneficiary);
+      _dataset?.mockGetBeneficiaries();
+      final response = await dioClient.get(BeneficiaryConstant.beneficiary);
       final beneficiaryDtoList = response.data
           .map((json) => BeneficiaryDto.fromJson(json as Map<String, dynamic>))
           .toList();
@@ -45,7 +31,7 @@ class BeneficiaryMockRepository implements IBeneficiaryRepository {
                 code: e.response!.statusCode,
                 message: e.response!.statusMessage!,
               )
-            : Error(message: e.message!),
+            : Error(message: e.toString()),
       );
     } catch (e) {
       return const Left(Error());
@@ -53,15 +39,13 @@ class BeneficiaryMockRepository implements IBeneficiaryRepository {
   }
 
   @override
-  Future<Either<Error, BeneficiaryModel>> addBeneficiary(
-    BeneficiaryModel beneficiary,
-  ) async {
+  Future<Either<Error, BeneficiaryModel>> addBeneficiary({
+    required BeneficiaryModel beneficiary,
+  }) async {
     var beneficiaryDto = BeneficiaryDto.fromJson(beneficiary.toJson());
-
-    _setupAddResponses(beneficiaryDto);
-
+    _dataset?.mockAddBeneficiary(beneficiaryDto);
     try {
-      final response = await _client.post(
+      final response = await dioClient.post(
         BeneficiaryConstant.beneficiary,
         data: beneficiaryDto.toJson(),
       );
@@ -73,59 +57,10 @@ class BeneficiaryMockRepository implements IBeneficiaryRepository {
                 code: e.response!.statusCode,
                 message: e.response!.statusMessage!,
               )
-            : Error(message: e.message!),
+            : Error(message: e.toString()),
       );
     } catch (e) {
       return const Left(Error());
     }
   }
-
-  void _setupGetResponses() {
-    _dioAdapter.onGet(
-      BeneficiaryConstant.beneficiary,
-      (server) => server.reply(
-        HttpStatus.ok,
-        _beneficiaryDtoList.map((b) => b.toJson()).toList(),
-        delay: const Duration(seconds: 1),
-      ),
-    );
-  }
-
-  void _setupAddResponses(BeneficiaryDto dto) {
-    _dioAdapter.onPost(
-      BeneficiaryConstant.beneficiary,
-      (server) {
-        if (_reachedMaxCount()) {
-          return server.reply(
-            HttpStatus.conflict,
-            null,
-            statusMessage:
-                "You have reached the maximum number of allowed beneficiaries. No further additions are permitted.",
-            delay: const Duration(seconds: 1),
-          );
-        } else if (_beneficiaryExists(dto)) {
-          return server.reply(
-            HttpStatus.conflict,
-            null,
-            statusMessage: "Beneficiary already exists.",
-            delay: const Duration(seconds: 1),
-          );
-        }
-
-        _beneficiaryDtoList.add(dto);
-
-        return server.reply(
-          HttpStatus.created,
-          dto,
-          delay: const Duration(seconds: 1),
-        );
-      },
-      data: dto.toJson(),
-    );
-  }
-
-  bool _reachedMaxCount() => _beneficiaryDtoList.length == 5;
-
-  bool _beneficiaryExists(BeneficiaryDto dto) =>
-      _beneficiaryDtoList.any((e) => e.phoneNumber == dto.phoneNumber);
 }

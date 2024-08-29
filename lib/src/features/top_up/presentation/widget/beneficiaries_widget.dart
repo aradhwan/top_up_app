@@ -17,15 +17,18 @@ class BeneficiariesWidget extends ConsumerWidget {
           padding: const EdgeInsets.fromLTRB(16.0, 16.0, 4.0, 0),
           child: Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Beneficiaries',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  context.loc.beneficiaries,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               TextButton(
                 onPressed: () => context.goNamed(Routes.addBeneficiary),
-                child: const Text('Add New'),
+                child: Text(context.loc.addNew),
               ),
             ],
           ),
@@ -45,24 +48,17 @@ class BeneficiariesWidget extends ConsumerWidget {
                 ),
                 (beneficiaries) {
                   return beneficiaries.isEmpty
-                      ? const Center(child: Text('No beneficiaries found'))
+                      ? Center(child: Text(context.loc.noBeneficiariesFound))
                       : LayoutBuilder(
                           builder: (context, constraints) {
                             double cardMargin = 16.0;
-                            double width = (0.8 -
-                                    ((cardMargin * 3) / constraints.maxWidth)) *
-                                0.5 *
-                                constraints.maxWidth;
-                            double cardWidth =
-                                (width > 200 || beneficiaries.length < 3)
-                                    ? 200
-                                    : constraints.maxWidth * 0.36;
-                            // double cardWidth = (constraints.maxWidth * 0.36 > 200 ||
-                            //         beneficiaries.length < 3)
-                            //     ? 200
-                            //     : constraints.maxWidth * 0.36;
-                            // double cardMargin = constraints.maxWidth * 0.0267;
-
+                            double totalWidth =
+                                constraints.maxWidth - (cardMargin * 3);
+                            double initialCardWidth = totalWidth / 2.2;
+                            double cardWidth = (initialCardWidth > 200 ||
+                                    beneficiaries.length < 3)
+                                ? 200
+                                : initialCardWidth;
                             return ListView.builder(
                               shrinkWrap: true,
                               itemCount: beneficiaries.length,
@@ -78,9 +74,10 @@ class BeneficiariesWidget extends ConsumerWidget {
                                   child: BeneficiaryCard(
                                     width: cardWidth,
                                     beneficiary: beneficiaries[index],
-                                    onTopUp: () {
-                                      // Navigate to top up screen
-                                    },
+                                    onTopUp: () => context.goNamed(
+                                      Routes.topUp,
+                                      extra: beneficiaries[index],
+                                    ),
                                   ),
                                 );
                               },

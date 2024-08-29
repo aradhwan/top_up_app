@@ -13,6 +13,13 @@ GoRouter goRouterConfig() {
             path: Routes.addBeneficiary,
             name: Routes.addBeneficiary,
             builder: (context, state) => const AddBeneficiaryPage(),
+          ),
+          GoRoute(
+            path: Routes.topUp,
+            name: Routes.topUp,
+            builder: (context, state) => TopUpPage(
+              beneficiary: state.extra as BeneficiaryModel,
+            ),
           )
         ],
       ),

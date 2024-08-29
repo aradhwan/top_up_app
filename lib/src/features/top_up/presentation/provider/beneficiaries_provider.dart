@@ -7,6 +7,6 @@ part 'beneficiaries_provider.g.dart';
 
 @riverpod
 Future<Either<Error, List<BeneficiaryModel>>> beneficiaries(
-    BeneficiariesRef ref) async {
-  return await GetIt.I.get<IBeneficiaryService>().getBeneficiaries();
+    BeneficiariesRef ref) {
+  return GetIt.I.get<IBeneficiaryService>().getBeneficiaries();
 }

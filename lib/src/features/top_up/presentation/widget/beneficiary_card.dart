@@ -41,14 +41,7 @@ class BeneficiaryCard extends StatelessWidget {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: onTopUp,
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(
-                      Theme.of(context).colorScheme.primary),
-                ),
-                child: const Text(
-                  'Top Up',
-                  style: TextStyle(color: Colors.white),
-                ),
+                child: Text(context.loc.topUp),
               ),
             ],
           ),
