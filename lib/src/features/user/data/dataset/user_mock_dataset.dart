@@ -12,6 +12,12 @@ class UserMockDataset extends BaseMockDataset implements IUserMockDataset {
     isVerified: true,
   );
 
+  UserMockDataset({UserDto? initialUserDto}) {
+    if (initialUserDto != null) {
+      _userDto = initialUserDto;
+    }
+  }
+
   @override
   void mockGetUserInfo() {
     dioAdapter.onGet(

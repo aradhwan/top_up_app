@@ -6,7 +6,7 @@ import 'package:uuid/uuid.dart';
 
 class TopUpMockDataset extends BaseMockDataset implements ITopUpMockDataset {
   final IUserMockDataset _userMockDataset;
-  final _topUpOptionDtoList = [
+  var _topUpOptionDtoList = [
     TopUpOptionDto(id: const Uuid().v8(), name: 'AED 5', value: 5),
     TopUpOptionDto(id: const Uuid().v8(), name: 'AED 10', value: 10),
     TopUpOptionDto(id: const Uuid().v8(), name: 'AED 20', value: 20),
@@ -15,7 +15,7 @@ class TopUpMockDataset extends BaseMockDataset implements ITopUpMockDataset {
     TopUpOptionDto(id: const Uuid().v8(), name: 'AED 75', value: 75),
     TopUpOptionDto(id: const Uuid().v8(), name: 'AED 100', value: 100),
   ];
-  final _topUpTransactionDtoList = [
+  var _topUpTransactionDtoList = [
     TopUpTransactionDto(
       id: const Uuid().v8(),
       beneficiaryName: 'Ahmed',
@@ -67,8 +67,18 @@ class TopUpMockDataset extends BaseMockDataset implements ITopUpMockDataset {
     ),
   ];
 
-  TopUpMockDataset({required IUserMockDataset userMockDataset})
-      : _userMockDataset = userMockDataset;
+  TopUpMockDataset({
+    required IUserMockDataset userMockDataset,
+    List<TopUpOptionDto>? initialTopUpOptionDtoList,
+    List<TopUpTransactionDto>? initialTopUpTransactionDtoList,
+  }) : _userMockDataset = userMockDataset {
+    if (initialTopUpOptionDtoList != null) {
+      _topUpOptionDtoList = initialTopUpOptionDtoList;
+    }
+    if (initialTopUpTransactionDtoList != null) {
+      _topUpTransactionDtoList = initialTopUpTransactionDtoList;
+    }
+  }
 
   @override
   void mockGetOptions() {

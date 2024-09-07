@@ -4,12 +4,18 @@ import 'package:top_up_app/src/src.dart';
 
 class BeneficiaryMockDataset extends BaseMockDataset
     implements IBeneficiaryMockDataset {
-  final _beneficiaryDtoList = [
+  var _beneficiaryDtoList = [
     const BeneficiaryDto(
         nickname: 'Ahmed Radwan', phoneNumber: '+971581234567'),
     const BeneficiaryDto(nickname: 'Khalid', phoneNumber: '+971507654321'),
     const BeneficiaryDto(nickname: 'Hasan', phoneNumber: '+971501234567'),
   ];
+
+  BeneficiaryMockDataset({List<BeneficiaryDto>? beneficiaryDtoList}) {
+    if (beneficiaryDtoList != null) {
+      _beneficiaryDtoList = beneficiaryDtoList;
+    }
+  }
 
   @override
   void mockGetBeneficiaries() {
